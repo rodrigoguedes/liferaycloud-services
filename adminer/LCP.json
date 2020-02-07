@@ -1,0 +1,39 @@
+{
+  "kind": "Deployment",
+  "id": "adminer",
+  "image": "adminer:4.7.5",
+  "memory": 1024,
+  "cpu": 1,
+  "loadBalancer": {
+    "targetPort": 8080
+  },
+  "ports": [
+    {
+      "port": 8080,
+      "external": true
+    }
+  ],
+  "readinessProbe": {
+    "httpGet": {
+      "path": "/",
+      "port": 8080
+    },
+    "initialDelaySeconds": 20,
+    "timeoutSeconds": 60,
+    "failureThreshold": 25,
+    "periodSeconds": 60
+  },
+  "livenessProbe": {
+    "httpGet": {
+      "path": "/",
+      "port": 8080
+    },
+    "initialDelaySeconds": 20,
+    "timeoutSeconds": 60,
+    "failureThreshold": 25,
+    "periodSeconds": 60
+  },
+  "env": {
+    "ADMINER_DEFAULT_SERVER": "database"
+  }
+}
