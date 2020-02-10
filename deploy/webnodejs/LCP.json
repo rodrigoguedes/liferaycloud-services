@@ -1,0 +1,39 @@
+{
+  "kind": "Deployment",
+  "id": "liferay",
+  "image": "rodrigoguedes/webnodejs:1.0.3",
+  "memory": 512,
+  "cpu": 1,
+  "scale": 1,
+  "ports": [
+    {
+      "port": 8080,
+      "external": false
+    }
+  ],
+  "readinessProbe": {
+    "httpGet": {
+      "path": "/",
+      "port": 8080
+    },
+    "initialDelaySeconds": 30,
+    "periodSeconds": 60,
+    "timeoutSeconds": 10,
+    "failureThreshold": 2
+  },
+  "livenessProbe": {
+    "httpGet": {
+      "path": "/",
+      "port": 8080
+    },
+    "initialDelaySeconds": 600,
+    "periodSeconds": 60,
+    "timeoutSeconds": 60,
+    "failureThreshold": 3
+  },
+  "environments": {
+    "infra": {
+      "deploy": false
+    }
+  }
+}

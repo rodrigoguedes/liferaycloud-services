@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "clean": "rm -rf dist && mkdir dist",
+    "build": "npm run clean && babel src -d dist/ --source-maps;",
+    "start": "fuser --verbose --kill --namespace tcp 3000;node dist/server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-http-to-https": "^1.1.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4"
+  },
+  "version": "1.0.3"
+}
